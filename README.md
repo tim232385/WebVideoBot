@@ -4,7 +4,7 @@
 ![Coveralls github branch](https://img.shields.io/badge/java-1.8-green.svg)
 ![Jenkins](https://img.shields.io/badge/license-MIT-blue.svg)
 
-簡介
+## 簡介
 
 研究爬取網頁影片
 研究對象:PornHub
@@ -14,15 +14,17 @@
 - Crawler4j
 - Docker - DB
 
-# 參與貢獻
+## 參與貢獻
 
 本專案歡迎使用者參與貢獻或是提出建言。
 
-# 開始
-
+## 開始
+TODO
 
 ## 執行這些範例程式前的準備工作
 TODO
 
 ## 準備開發環境
+TODO
+## 使用一鍵安裝工具來安裝深度學習框架
 TODO
