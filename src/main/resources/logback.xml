@@ -1,10 +1,13 @@
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <logger name="edu.uci.ics.crawler4j.crawler.CrawlController" level="error"/>
+    <logger name="edu.uci.ics.crawler4j.url.TLDList" level="error"/>
+    <logger name="edu.uci.ics.crawler4j.frontier" level="OFF"/>
 
     <root level="info"><!-- hush! -->
         <appender-ref ref="STDOUT" />

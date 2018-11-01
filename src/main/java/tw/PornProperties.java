@@ -1,54 +1,81 @@
 package tw;
 
-import org.apache.commons.io.FileUtils;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.nio.file.Path;
+import java.util.Optional;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.Function;
+
+import static org.apache.commons.io.FileUtils.openInputStream;
 
 /**
  * Created by Tim.Liu on 2018/11/1.
  */
 public class PornProperties {
-
-    private static String userPropFileName = "\\config.properties";
-    private static String defultPropFileName = "defaultConfig.properties";
     private static final Logger logger = LoggerFactory.getLogger(PornBot.class);
-    private static Properties properties = new Properties();
+    public static String WORK_PATH = new File(".").getAbsolutePath().replace(".", "");
+
+    public static String FILE_PATH;
+
+    public static int MAX_VIDEO_SIZE;
+    public static int MIX_VIDEO_SIZE = 104857600;
+    public static int MAX_PAGE_SIZE = Integer.MAX_VALUE;
+    public static int CONCURRENT_THREAD_SIZE = 10;
+    public static AtomicInteger nextPage = new AtomicInteger(1);
+
+    private static URIBuilder uriBuilder = null;
+    private static String USER_PROP_FILE_NAME = "config.properties";
 
     static {
-        String filePath = new File(System.getProperty("java.class.path")).getAbsoluteFile().getParentFile().toString();
-        filePath += userPropFileName;
-
-        InputStream inputStream = null;
         try {
-            inputStream = FileUtils.openInputStream(new File(filePath));
-        } catch (IOException e) {
+            Properties properties = new Properties();
+            if(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME).exists()) {
+                properties.load(openInputStream(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME)));
+            } else {
+                logger.error("config.properties notFount use default config...");
+            }
+
+            MAX_VIDEO_SIZE =  parse(properties, PropertiesParam.MAX_DOWNLOAD_SIZE, Integer::valueOf, 104857600);
+            MAX_PAGE_SIZE = parse(properties, PropertiesParam.MAX_PAGE_SIZE, Integer::valueOf, 1000);
+            CONCURRENT_THREAD_SIZE = parse(properties, PropertiesParam.CONCURRENT_THREAD_SIZE, Integer::valueOf, 15);
+            FILE_PATH = parse(properties, PropertiesParam.FILE_PATH, Function.identity(), "D:/video");
+            String START_URL = parse(properties, PropertiesParam.START_URL, Function.identity(), "https://www.pornhub.com/video?page=1");
+            uriBuilder = new URIBuilder(START_URL);
+
+            uriBuilder.getQueryParams()
+                .stream()
+                .filter(param -> param.getName().equalsIgnoreCase("page"))
+                .map(NameValuePair::getValue)
+                .map(Integer::valueOf)
+                .findFirst()
+                .ifPresent(nextPage::set);
+
+            if(MAX_VIDEO_SIZE < MIX_VIDEO_SIZE) {
+                MAX_VIDEO_SIZE = MIX_VIDEO_SIZE;
+            }
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
-
-        if (inputStream == null) {
-            inputStream = PornProperties.class.getClassLoader().getResourceAsStream(defultPropFileName);
-            logger.info("config.properties notFount use default config...");
-        } else {
-            logger.info("Use config.properties...");
-        }
-
-        try {
-            properties.load(inputStream);
-        } catch (IOException e) {
-            logger.trace("load properties faild, please check config.properties", e);
-        }
     }
 
-    public static String get(PropertiesParam propertiesParam) {
-        return (String) properties.get(propertiesParam.name());
+    public static <R> R parse(Properties properties, PropertiesParam propertiesParam, Function<String, R> fn, R defaultValue) {
+        return Optional.ofNullable(properties.get(propertiesParam.name()))
+            .filter(o -> o != null)
+            .map(Object::toString)
+            .map(fn)
+            .orElse(defaultValue);
     }
 
+    public static String getNextUrl() throws URISyntaxException {
+        URIBuilder uriBuilder = PornProperties.uriBuilder.setParameter("page", nextPage.getAndAdd(1) + "");
+        return uriBuilder.build().toString();
+    }
 }
 

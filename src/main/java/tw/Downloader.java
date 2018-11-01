@@ -36,7 +36,7 @@ public class Downloader {
                 FileUtils.copyInputStreamToFile(fetchResult.getEntity().getContent(), file);
                 logger.info("Download Finish filePath:[{}].", file);
             } else {
-                logger.info("Skip download url:[{}], HttpStatus is [{}].", url, fetchResult.getStatusCode());
+                logger.info("Skip download url:[{}], HttpStatus:[{}].", url, fetchResult.getStatusCode());
             }
         } catch (PageBiggerThanMaxSizeException e) {
             logger.debug("PageBiggerThanMaxSizeException", e);

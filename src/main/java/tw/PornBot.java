@@ -11,32 +11,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PornBot {
 
     private static final Logger logger = LoggerFactory.getLogger(PornBot.class);
-    private final static String URL = "https://www.pornhub.com/video?page=";
-    private final static int MAX_PAGE_SIZE = Integer.valueOf(PornProperties.get(PropertiesParam.MAX_PAGE_SIZE));
-    private final static int CONCURRENT_THREAD_SIZE = Integer.valueOf(PornProperties.get(PropertiesParam.CONCURRENT_THREAD_SIZE));
-    private static AtomicInteger page = new AtomicInteger(1);
 
     private static ArrayList<CrawlController> runnig = Lists.newArrayList();
 
-    public static synchronized int getNextPage() {
-        return page.getAndAdd(1);
-    }
-
-    public static synchronized int getPage() {
-        return page.get();
-    }
-
     public static void main(String[] args) throws Exception {
+        logger.info("PornBot Start");
         PornCrawlControllerFactory crawlControllerFactory = new PornCrawlControllerFactory();
-        for (int i = page.get(); i < MAX_PAGE_SIZE; ) {
-            int size = runnig.size();
-            int diffThread = CONCURRENT_THREAD_SIZE - size;
+        for (int i = 1; i <= PornProperties.MAX_PAGE_SIZE; ) {
             // 補至CONCURRENT_THREAD_SIZE
-            for (int j = 1; j < diffThread; j++) {
-                String startUrl = URL + getNextPage();
-                CrawlController controller = crawlControllerFactory.getController(startUrl);
-                controller.startNonBlocking(PornCrawler.class, 1);
+            for (; runnig.size() < PornProperties.CONCURRENT_THREAD_SIZE && i <= PornProperties.MAX_PAGE_SIZE;) {
+                String startUrl = PornProperties.getNextUrl();
+                CrawlController controller = crawlControllerFactory.getController();
+                controller.addSeed(startUrl);
+                controller.startNonBlocking(PornCrawler.class, 10);
                 runnig.add(controller);
+                logger.info("CrawlController start getUrl:[{}].", startUrl);
+                i++;
             }
 
             for (CrawlController crawlController : runnig) {
@@ -44,6 +34,7 @@ public class PornBot {
                     runnig.remove(crawlController);
                     break;
                 }
+                Thread.sleep(1000);
             }
         }
     }

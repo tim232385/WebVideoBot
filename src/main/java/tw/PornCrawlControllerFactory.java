@@ -17,7 +17,7 @@ public class PornCrawlControllerFactory {
     private static final Logger logger = LoggerFactory.getLogger(PornCrawlControllerFactory.class);
     private final static String CRAWL_STORAGE = "/data/crawl/root";
 
-    public CrawlController getController(String startUrl) throws Exception {
+    public CrawlController getController() throws Exception {
         String ran = "";
         for (int j = 0; j < 10; j++) {
             char randomLetter = (char) ('a' + Math.random() * ('z'-'a' + 1));
@@ -27,7 +27,7 @@ public class PornCrawlControllerFactory {
         config.setCrawlStorageFolder(CRAWL_STORAGE + "/" + ran);
         config.setDefaultHeaders(PornCrawler.initHeader());
         config.setCookieStore(new PornCookieStore());
-        config.setMaxDownloadSize(Integer.valueOf(PornProperties.get(PropertiesParam.MAX_DOWNLOAD_SIZE)));
+        config.setMaxDownloadSize(PornProperties.MAX_VIDEO_SIZE);
         config.setPolitenessDelay(1000);
         config.setUserAgentString(RandomAgents.nextAgent());
         config.setResumableCrawling(true);
@@ -36,7 +36,6 @@ public class PornCrawlControllerFactory {
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();
         RobotstxtServer robotstxtServer = new RobotstxtServer(robotstxtConfig, pageFetcher);
         CrawlController controller = new CrawlController(config, pageFetcher, robotstxtServer);
-        controller.addSeed(startUrl);
         return controller;
     }
 }
