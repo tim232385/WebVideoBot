@@ -19,7 +19,8 @@
 本專案歡迎使用者參與貢獻或是提出建言。
 
 ## 開始
-TODO
+
+java -jar PornBot-1.0-SNAPSHOT.one-jar.jar
 
 ## 執行這些範例程式前的準備工作
 TODO
