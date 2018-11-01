@@ -9,18 +9,20 @@
 研究爬取網頁影片
 研究對象:PornHub
 
-環境
+### 環境
 - Java1.8
 - Crawler4j
+
+### 開始
+
+``java -jar PornBot.jar``
 
 ### Demo
 
 
 ![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/demo.gif)
 
-### 開始
 
-``java -jar PornBot.jar``
 
 
 
