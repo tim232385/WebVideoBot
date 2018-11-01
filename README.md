@@ -30,7 +30,7 @@
 
 
 | Key | Description | Default | 
-|--------------|:-----:|-----:| ----:|
+|--------------|:-----:|-----:|
 |FILE_PATH | 影片存放位置 | D:/video |
 | VIDEO_DOWNLOAD_SIZE | 影片允許下載的最大Byte | 104857600 |
 | MAX_PAGE_SIZE | 頁數限制 | 10000 |
