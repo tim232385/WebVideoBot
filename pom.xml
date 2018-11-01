@@ -20,20 +20,15 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <version>1.4.4</version>
                 <executions>
                     <execution>
-                        <id>copy-dependencies</id>
-                        <phase>prepare-package</phase>
+
                         <goals>
-                            <goal>copy-dependencies</goal>
+                            <goal>one-jar</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/libs
-                            </outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -44,10 +39,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>libs/</classpathPrefix>
-                            <mainClass>tw.PornBot
-                            </mainClass>
+                            <mainClass>tw.PornBot</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

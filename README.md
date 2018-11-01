@@ -1,4 +1,4 @@
-# PornBot
+# tw.PornBot
 
 
 ![Coveralls github branch](https://img.shields.io/badge/java-1.8-green.svg)
@@ -26,8 +26,3 @@ TODO
 
 ## 準備開發環境
 TODO
-
-## Stargazers over time
-
-[![Stargazers over time](https://starcharts.herokuapp.com/tim232385/PornBot.svg)](https://starcharts.herokuapp.com/tim232385/PornBot)
-      
