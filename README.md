@@ -21,9 +21,3 @@
 ## 開始
 
 java -jar PornBot-1.0-SNAPSHOT.one-jar.jar
-
-## 執行這些範例程式前的準備工作
-TODO
-
-## 準備開發環境
-TODO
