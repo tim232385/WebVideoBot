@@ -26,3 +26,8 @@ TODO
 
 ## 準備開發環境
 TODO
+
+## Stargazers over time
+
+[![Stargazers over time](https://starcharts.herokuapp.com/tim232385/PornBot.svg)](https://starcharts.herokuapp.com/tim232385/PornBot)
+      
