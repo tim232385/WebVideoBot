@@ -39,14 +39,19 @@ public class PornProperties {
             if(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME).exists()) {
                 properties.load(openInputStream(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME)));
             } else {
-                logger.error("config.properties notFount use default config...");
+                logger.error("config.properties not found use default config");
             }
 
-            MAX_VIDEO_SIZE =  parse(properties, PropertiesParam.MAX_DOWNLOAD_SIZE, Integer::valueOf, 104857600);
+            MAX_VIDEO_SIZE =  parse(properties, PropertiesParam.VIDEO_DOWNLOAD_SIZE, Integer::valueOf, 104857600);
             MAX_PAGE_SIZE = parse(properties, PropertiesParam.MAX_PAGE_SIZE, Integer::valueOf, 1000);
-            CONCURRENT_THREAD_SIZE = parse(properties, PropertiesParam.CONCURRENT_THREAD_SIZE, Integer::valueOf, 15);
+            CONCURRENT_THREAD_SIZE = parse(properties, PropertiesParam.CONCURRENT_THREAD_SIZE, Integer::valueOf, 10);
             FILE_PATH = parse(properties, PropertiesParam.FILE_PATH, Function.identity(), "D:/video");
-            String START_URL = parse(properties, PropertiesParam.START_URL, Function.identity(), "https://www.pornhub.com/video?page=1");
+            String START_URL = parse(properties, PropertiesParam.START_URL, Function.identity(), "https://www.pornhub.com/");
+
+            if(!START_URL.startsWith("https://www.pornhub.com")) {
+                throw new IllegalArgumentException("START_URL need start with https://www.pornhub.com");
+            }
+
             uriBuilder = new URIBuilder(START_URL);
 
             uriBuilder.getQueryParams()
