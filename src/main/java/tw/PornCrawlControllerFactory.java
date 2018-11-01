@@ -1,5 +1,5 @@
-import common.PropertiesParam;
-import common.RandomAgents;
+package tw;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -8,12 +8,13 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * Created by Tim.Liu on 2018/10/31.
  */
 public class PornCrawlControllerFactory {
 
-    private static final Logger logger = LoggerFactory.getLogger(PornBot.class);
+    private static final Logger logger = LoggerFactory.getLogger(PornCrawlControllerFactory.class);
     private final static String CRAWL_STORAGE = "/data/crawl/root";
 
     public CrawlController getController(String startUrl) throws Exception {
@@ -29,6 +30,7 @@ public class PornCrawlControllerFactory {
         config.setMaxDownloadSize(Integer.valueOf(PornProperties.get(PropertiesParam.MAX_DOWNLOAD_SIZE)));
         config.setPolitenessDelay(1000);
         config.setUserAgentString(RandomAgents.nextAgent());
+        config.setResumableCrawling(true);
 
         PageFetcher pageFetcher = new PageFetcher(config);
         RobotstxtConfig robotstxtConfig = new RobotstxtConfig();

@@ -1,5 +1,6 @@
+package tw;
+
 import com.google.common.collect.Lists;
-import common.PropertiesParam;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

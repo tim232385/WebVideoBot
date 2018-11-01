@@ -1,3 +1,5 @@
+package tw;
+
 import com.google.common.collect.Lists;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
@@ -13,7 +15,7 @@ import java.util.List;
  */
 public class PornCookieStore extends BasicCookieStore {
 
-    private static final Logger logger = LoggerFactory.getLogger(PornBot.class);
+    private static final Logger logger = LoggerFactory.getLogger(PornCookieStore.class);
 
     @Override
     public synchronized List<Cookie> getCookies() {

@@ -1,4 +1,5 @@
-import common.PropertiesParam;
+package tw;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +29,7 @@ public class PornProperties {
         return (String) properties.get(propertiesParam.name());
     }
 
-//    public static <V> V  getOrDefault(common.PropertiesParam propertiesParam, V defaultVaue) {
+//    public static <V> V  getOrDefault(tw.common.PropertiesParam propertiesParam, V defaultVaue) {
 //        return (V) properties.getOrDefault(propertiesParam.name(), defaultVaue);
 //    }
 

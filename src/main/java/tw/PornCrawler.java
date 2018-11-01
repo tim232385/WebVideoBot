@@ -1,7 +1,6 @@
+package tw;
+
 import com.google.common.collect.Lists;
-import common.Downloader;
-import common.PropertiesParam;
-import common.RandomAgents;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -22,8 +21,8 @@ public class PornCrawler extends WebCrawler {
 
     private static final Pattern VIEWKEY_PATTERN = Pattern.compile("(.*)(viewkey=)(.*[\\&]{0,1})(.*)");
     private static final Pattern FIND_VIDEO_PATTERN = Pattern.compile("(.*)(\\\"videoUrl\\\"\\:\\\")(.*)(\\\"\\}\\])(.*)");
-    private final static String EMBED_URL = "https://www.pornhub.com/embed/";
-    private final static String VIDEO_PATH = PornProperties.get(PropertiesParam.VIDEO_PATH) + "\\";
+    private static final String EMBED_URL = "https://www.pornhub.com/embed/";
+    private static final String FILE_PATH = PornProperties.get(PropertiesParam.FILE_PATH) + "\\";
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
@@ -50,11 +49,10 @@ public class PornCrawler extends WebCrawler {
             String html = ((HtmlParseData) page.getParseData()).getHtml().replaceAll("\n", "");
             if(FIND_VIDEO_PATTERN.matcher(html).matches()){
                 String videoUrl = FIND_VIDEO_PATTERN.matcher(html).replaceAll("$3").replace("\\/", "/");
-                logger.info("videoUrl == " + videoUrl);
                 try {
                     String embedKey = getEmbedKey(page.getWebURL());
                     new Downloader(myController.getConfig()).download(videoUrl, new File(
-                        VIDEO_PATH + embedKey + ".mp4"));
+                        FILE_PATH + embedKey + ".mp4"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
