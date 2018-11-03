@@ -1,12 +1,13 @@
 package tw.entity;
 
-import org.springframework.util.StringUtils;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 
 @Entity(name = "PORN_RECORD")
 public class PornRecord {
@@ -14,58 +15,72 @@ public class PornRecord {
     @GeneratedValue
     private Long id;
 
+    @NotNull
     private String viewKey;
+
     @Column(length = 1000)
     private String imageUrl;//image_url
+
     @Column(length = 1000)
     private String linkUrl;//link_url
+
+    @Column(length = 1000)
+    private String videoUrl;
+
     private String videoTitle; //video_title
+
     private String videoDuration;//video_duration
-    private String currentUp;
-    private String currentDown;
-    private String category;
-    @Column(length = 1000)
-    private String video240p;
-    @Column(length = 1000)
-    private String video480p;
-    @Column(length = 1000)
-    private String video720p;
-    @Column(length = 1000)
-    private String video1080p;
+
+    private String videoQuality;
+
     private boolean download;
+
+    private LocalDateTime createdTime = LocalDateTime.now();
+
+    @Column(length = 1000)
     private String filePath;
 
-    public PornRecord(HashMap<String, Object> videoMap, HashMap<String, Object> likeMap, String viewKey, String filePathPrefix) {
-        final String emptyString = "";
+
+    /**
+     *  @param videoMap
+     * @param viewKey
+     * @param filePathPrefix
+     */
+    public PornRecord(HashMap<String, Object> videoMap, String viewKey, String filePathPrefix, boolean download) {
+        HashMap mediaDefinitions = ((List<HashMap>) videoMap.get("mediaDefinitions")).get(0);
         this.viewKey = trimToNull(viewKey);
         this.imageUrl = trimToNull(videoMap.get("image_url"));
         this.linkUrl = trimToNull(videoMap.get("link_url"));
         this.videoTitle = trimToNull(videoMap.get("video_title"));
         this.videoDuration = trimToNull(videoMap.get("video_duration"));
         this.filePath = filePathPrefix + "/" + viewKey + ".mp4";
-        this.currentUp = trimToNull(likeMap.get("currentUp"));
-        this.currentDown = trimToNull(likeMap.get("currentDown"));
-
-        video240p = trimToNull(videoMap.get("quality_240p"));
-        video480p = trimToNull(videoMap.get("quality_480p"));
-        video720p = trimToNull(videoMap.get("quality_720p"));
-        video1080p = trimToNull(videoMap.get("quality_1080p"));
+        this.download = download;
+        this.videoUrl = trimToNull(mediaDefinitions.get("videoUrl").toString());
+        this.videoQuality = trimToNull(mediaDefinitions.get("quality").toString());
     }
 
-    public String getVideo720p() {
-        return video720p;
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
-    public void setVideo720p(String video720p) {
-        this.video720p = video720p;
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
     }
 
-    public String getVideo1080p() {
-        return video1080p;
+    public String getVideoUrl() {
+        return videoUrl;
     }
 
-    public void setVideo1080p(String video1080p) {
-        this.video1080p = video1080p;
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+    public String getVideoQuality() {
+        return videoQuality;
+    }
+
+    public void setVideoQuality(String videoQuality) {
+        this.videoQuality = videoQuality;
     }
 
     public boolean isDownload() {
@@ -84,32 +99,9 @@ public class PornRecord {
         this.filePath = filePath;
     }
 
-    public String getVideo480p() {
-        return video480p;
-    }
-
-    public void setVideo480p(String video480p) {
-        this.video480p = video480p;
-    }
-
-    public String getVideo240p() {
-        return video240p;
-    }
-
-    public void setVideo240p(String video240p) {
-        this.video240p = video240p;
-    }
 
     private String trimToNull(Object object) {
         return object == null ? null : object.toString().trim();
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getViewKey() {
@@ -160,20 +152,5 @@ public class PornRecord {
         this.videoDuration = videoDuration;
     }
 
-    public String getCurrentUp() {
-        return currentUp;
-    }
-
-    public void setCurrentUp(String currentUp) {
-        this.currentUp = currentUp;
-    }
-
-    public String getCurrentDown() {
-        return currentDown;
-    }
-
-    public void setCurrentDown(String currentDown) {
-        this.currentDown = currentDown;
-    }
 
 }

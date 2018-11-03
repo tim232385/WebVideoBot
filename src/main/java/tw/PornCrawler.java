@@ -41,55 +41,44 @@ public class PornCrawler extends WebCrawler {
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
-        if(url.getURL().startsWith("https://www.pornhub.com/")) {
+        if((url.getURL().startsWith("https://www.pornhub.com/")||url.getURL().startsWith("http://www.pornhub.com/")) && url.getURL().contains("viewkey=")) {
             return true;
         } else {
-            logger.info("skip url:{}", url);
             return false;
         }
     }
 
-//    @Override
-//    protected WebURL handleUrlBeforeProcess(WebURL webURL) {
-////        if(VIEWKEY_PATTERN.matcher(webURL.getURL()).matches()) {
-////            WebURL embedUrl = new WebURL();
-////            embedUrl.setURL(EMBED_URL + getViewkey(webURL));
-////            return embedUrl;
-////        } else {
-////            return super.handleUrlBeforeProcess(webURL);
-////        }
-//    }
+    @Override
+    protected WebURL handleUrlBeforeProcess(WebURL webURL) {
+        if(VIEWKEY_PATTERN.matcher(webURL.getURL()).matches()) {
+            WebURL embedUrl = new WebURL();
+            embedUrl.setURL("https://www.pornhub.com/embed/" + getViewkey(webURL));
+            return embedUrl;
+        } else {
+            return super.handleUrlBeforeProcess(webURL);
+        }
+    }
 
     @Override
     public void visit(Page page) {
-        if (page.getParseData() instanceof HtmlParseData) {
-                String html = ((HtmlParseData) page.getParseData()).getHtml().replaceAll("\n", "");
-                if(page.getWebURL().getURL().contains("?viewkey=") ) {
-                    Matcher htmlMatcher = Pattern.compile("(.*)(var flashvars_.*?=)(.*?language.*?})(.*)(Categories\\:<\\/h3>)(.*?(<\\/div>))(.*)(VIDEO_SHOW = )(.*watched.*?})(.*)").matcher(html);
-                    if(htmlMatcher.matches()) {
-                        try {
-                            String viewKey = getViewkey(page.getWebURL());
-                            String videoJson = htmlMatcher.replaceAll("$3");
-                            String likeJson = htmlMatcher.replaceAll("$10");
-                            String catogory = htmlMatcher.replaceAll("$6");
+        if(page.getWebURL().getURL().contains("")) {
+            String html = ((HtmlParseData) page.getParseData()).getHtml().replaceAll("\n", "");
+            Matcher htmlMatcher = Pattern.compile("(.*)(var flashvars.*?)(\\{.*language.*?})(.*)").matcher(html);
+            if(htmlMatcher.matches()) {
+                logger.info("Find video url:[{}]", page.getWebURL().getURL());
+                try {
+                    String viewKey = getEmbedKey(page.getWebURL());
+                    String videoJson = htmlMatcher.replaceAll("$3");
+                    HashMap<String, Object> videoMap = objectMapper.readValue(videoJson, HashMap.class);
 
-                            HashMap<String, Object> videoMap = objectMapper.readValue(videoJson, HashMap.class);
-                            HashMap<String, Object> likeMap = objectMapper.readValue(likeJson, HashMap.class);
-
-                            PornRecord pornRecord = new PornRecord(videoMap, likeMap, viewKey, Properties.FILE_PATH);
-
-//                            downloadService.download(myController.getConfig(), pornRecord.getVideo240p(), new File(pornRecord.getFilePath()));
-                            pornRecordDao.save(pornRecord);
-
-                        } catch (Exception e) {
-                            logger.error("Download fail", e);
-                            logger.error("html =   " +html );
-                        }
-                    } else {
-                        logger.error("html not matches [{}], html [{}]", page.getWebURL(), html);
+                    PornRecord pornRecord = new PornRecord(videoMap, viewKey, Properties.FILE_PATH, Properties.DOWNLOAD_VIDEO);
+                    pornRecordDao.save(pornRecord);
+                    if(Properties.DOWNLOAD_VIDEO) {
+                        downloadService.download(myController.getConfig(), pornRecord.getVideoUrl(), new File(pornRecord.getFilePath()));
                     }
-            } else {
-                    logger.info("skip url2:{}", page.getWebURL().getURL());
+                } catch (Exception e) {
+                    logger.error("Download fail", e);
+                }
             }
         }
     }

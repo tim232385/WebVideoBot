@@ -23,6 +23,7 @@ public class Properties {
     public static String WORK_PATH = new File(".").getAbsolutePath().replace(".", "");
 
     public static String FILE_PATH;
+    public static boolean DOWNLOAD_VIDEO;
 
     public static int MAX_VIDEO_SIZE;
     public static int MIX_VIDEO_SIZE = 104857600;

@@ -38,15 +38,14 @@ public class PornBot implements CommandLineRunner {
         logger.info("PornBot Start");
         PornCrawlControllerFactory crawlControllerFactory = new PornCrawlControllerFactory();
         for (int i = 1; i <= Properties.MAX_PAGE_SIZE;) {
-            // 補至CONCURRENT_THREAD_SIZE
-            for (; runnigCrawl.size() < 2 && i <= Properties.MAX_PAGE_SIZE;) {
+//             補至CONCURRENT_THREAD_SIZE
+            for (; runnigCrawl.size() < Properties.CONCURRENT_THREAD_SIZE && i <= Properties.MAX_PAGE_SIZE;) {
                 String startUrl = Properties.getNextUrl();
                 CrawlController controller = crawlControllerFactory.getController();
                 controller.addSeed(startUrl);
-                controller.startNonBlocking(pornCrawlerFactory.getObject(), 1);
+                controller.startNonBlocking(pornCrawlerFactory.getObject(), 10);
                 runnigCrawl.add(controller);
                 logger.info("CrawlController start getUrl:[{}].", startUrl);
-                i++;
             }
 
             for (CrawlController crawlController : runnigCrawl) {
@@ -57,4 +56,6 @@ public class PornBot implements CommandLineRunner {
             }
         }
     }
+
+
 }

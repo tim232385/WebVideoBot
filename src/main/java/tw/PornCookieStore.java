@@ -6,6 +6,7 @@ import org.apache.http.impl.cookie.BasicClientCookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tw.Utils.RandomStringUtils;
+import tw.Utils.RnkeyUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,9 +42,13 @@ public class PornCookieStore extends BasicCookieStore {
                 new BasicClientCookie("FastPopSessionRequestNumber", "1"),
                 new BasicClientCookie("FPSRN", "1"),
                 new BasicClientCookie("performance_timing", "home"),
-                new BasicClientCookie("RNKEY", "1554611*2565377:3508882876:1824418585:1"))
+                new BasicClientCookie("RNKEY", RnkeyUtils.nextKey()))
+
             .peek(c -> c.setDomain(domain))
             .peek(c -> c.setPath("/"))
             .collect(Collectors.toList());
     }
+
+
+
 }
