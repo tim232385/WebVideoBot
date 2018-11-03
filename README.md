@@ -44,4 +44,4 @@ Password: ~~empty~~
 | MAX_PAGE_SIZE | Page limit | 10000 |
 | CONCURRENT_THREAD_SIZE | Concurrent Thread | 10 |
 | START_URL | StartURL | `https://www.pornhub.com/` |
-| Download | download | Y |
+| DOWNLOAD_VIDEO | download | Y |

@@ -40,3 +40,4 @@ Password: ~~空~~
 | MAX_PAGE_SIZE | 頁數限制 | 10000 |
 | CONCURRENT_THREAD_SIZE | 同時運行的Thread數量 | 10 |
 | START_URL | 起始URL | `https://www.pornhub.com/` |
+| DOWNLOAD_VIDEO | 是否要下載影片 | Y |
