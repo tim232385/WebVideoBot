@@ -8,9 +8,9 @@
 
 ### Introduction 
 
-Research crawling webpages
-Goal: PornHub
-
+Pornhub-crawler.
+The world's largest adult website  
+  
 ### Getting started
 
 #### Run
@@ -21,9 +21,13 @@ Goal: PornHub
 #### Database console
 ``http://localhost:8000/h2-console/``
 
-JDBC URL: ``jdbc:h2:~/porn/porn-db``
-User Name: sa
+JDBC URL: ``jdbc:h2:~/porn/porn-db``  
+
+User Name: ``sa``  
+
 Password: ~~empty~~
+
+![123](https://raw.githubusercontent.com/tim232385/PornBot/master/image/h2_console.gif)
 
 
 
@@ -42,3 +46,4 @@ Password: ~~empty~~
 | MAX_PAGE_SIZE | Page limit | 10000 |
 | CONCURRENT_THREAD_SIZE | Concurrent Thread | 10 |
 | START_URL | StartURL | `https://www.pornhub.com/` |
+| Download | download | Y |
