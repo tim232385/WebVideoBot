@@ -29,9 +29,9 @@ public class PornRecord {
 
     private String videoTitle; //video_title
 
-    private String videoDuration;//video_duration
+    private int videoDuration;//video_duration
 
-    private String videoQuality;
+    private int videoQuality;
 
     private boolean download;
 
@@ -52,11 +52,11 @@ public class PornRecord {
         this.imageUrl = trimToNull(videoMap.get("image_url"));
         this.linkUrl = trimToNull(videoMap.get("link_url"));
         this.videoTitle = trimToNull(videoMap.get("video_title"));
-        this.videoDuration = trimToNull(videoMap.get("video_duration"));
+        this.videoDuration = Integer.valueOf(videoMap.get("video_duration").toString());
         this.filePath = filePathPrefix + "/" + viewKey + ".mp4";
         this.download = download;
         this.videoUrl = trimToNull(mediaDefinitions.get("videoUrl").toString());
-        this.videoQuality = trimToNull(mediaDefinitions.get("quality").toString());
+        this.videoQuality = Integer.valueOf(mediaDefinitions.get("quality").toString());
     }
 
     public LocalDateTime getCreatedTime() {
@@ -73,14 +73,6 @@ public class PornRecord {
 
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
-    }
-
-    public String getVideoQuality() {
-        return videoQuality;
-    }
-
-    public void setVideoQuality(String videoQuality) {
-        this.videoQuality = videoQuality;
     }
 
     public boolean isDownload() {
@@ -142,14 +134,6 @@ public class PornRecord {
 
     public void setVideoTitle(String videoTitle) {
         this.videoTitle = videoTitle;
-    }
-
-    public String getVideoDuration() {
-        return videoDuration;
-    }
-
-    public void setVideoDuration(String videoDuration) {
-        this.videoDuration = videoDuration;
     }
 
 
