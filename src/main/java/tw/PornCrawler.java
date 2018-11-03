@@ -41,7 +41,12 @@ public class PornCrawler extends WebCrawler {
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
-        return url.getURL().contains("?viewkey=") && url.getURL().startsWith("https://www.pornhub.com/");
+        if(url.getURL().startsWith("https://www.pornhub.com/")) {
+            return true;
+        } else {
+            logger.info("skip url:{}", url);
+            return false;
+        }
     }
 
 //    @Override
@@ -59,7 +64,7 @@ public class PornCrawler extends WebCrawler {
     public void visit(Page page) {
         if (page.getParseData() instanceof HtmlParseData) {
                 String html = ((HtmlParseData) page.getParseData()).getHtml().replaceAll("\n", "");
-                if(shouldVisit(page, page.getWebURL()) ) {
+                if(page.getWebURL().getURL().contains("?viewkey=") ) {
                     Matcher htmlMatcher = Pattern.compile("(.*)(var flashvars_.*?=)(.*?language.*?})(.*)(Categories\\:<\\/h3>)(.*?(<\\/div>))(.*)(VIDEO_SHOW = )(.*watched.*?})(.*)").matcher(html);
                     if(htmlMatcher.matches()) {
                         try {
@@ -83,6 +88,8 @@ public class PornCrawler extends WebCrawler {
                     } else {
                         logger.error("html not matches [{}], html [{}]", page.getWebURL(), html);
                     }
+            } else {
+                    logger.info("skip url2:{}", page.getWebURL().getURL());
             }
         }
     }
