@@ -11,23 +11,26 @@
 Research crawling webpages
 Goal: PornHub
 
-
-### Installing
-- Java1.8
-- Crawler4j
-
 ### Getting started
 
+#### Run
 ``java -jar PornBot.jar``
-
-### Demo
-
 
 ![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/demo.gif)
 
+#### Database console
+``http://localhost:8000/h2-console/``
+
+JDBC URL: ``jdbc:h2:~/porn/porn-db``
+User Name: sa
+Password: ~~empty~~
 
 
 
+### Built With
+- Java1.8
+- Crawler4j
+- Spring x H2 Db
 
 ### Config
 
