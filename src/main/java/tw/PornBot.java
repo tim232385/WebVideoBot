@@ -43,9 +43,9 @@ public class PornBot implements CommandLineRunner {
                 String startUrl = Properties.getNextUrl();
                 CrawlController controller = crawlControllerFactory.getController();
                 controller.addSeed(startUrl);
-                controller.startNonBlocking(pornCrawlerFactory.getObject(), 10);
+                controller.startNonBlocking(pornCrawlerFactory.getObject(), 2);
                 runnigCrawl.add(controller);
-                logger.info("CrawlController start getUrl:[{}].", startUrl);
+                logger.info("CrawlController start search url:[{}].", startUrl);
             }
 
             for (CrawlController crawlController : runnigCrawl) {

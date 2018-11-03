@@ -23,7 +23,7 @@ public class Properties {
     public static String WORK_PATH = new File(".").getAbsolutePath().replace(".", "");
 
     public static String FILE_PATH;
-    public static boolean DOWNLOAD_VIDEO;
+    public static boolean DOWNLOAD_VIDEO = false;
 
     public static int MAX_VIDEO_SIZE;
     public static int MIX_VIDEO_SIZE = 104857600;
@@ -40,7 +40,7 @@ public class Properties {
             if(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME).exists()) {
                 properties.load(openInputStream(new File(WORK_PATH + "/" + USER_PROP_FILE_NAME)));
             } else {
-                logger.error("config.properties not found use default config");
+                logger.error("config properties not found use default config");
             }
 
             MAX_VIDEO_SIZE =  parse(properties, PropertiesParam.VIDEO_DOWNLOAD_SIZE, Integer::valueOf, 104857600);
@@ -48,6 +48,9 @@ public class Properties {
             CONCURRENT_THREAD_SIZE = parse(properties, PropertiesParam.CONCURRENT_THREAD_SIZE, Integer::valueOf, 10);
             FILE_PATH = parse(properties, PropertiesParam.FILE_PATH, Function.identity(), "D:/video");
             String START_URL = parse(properties, PropertiesParam.START_URL, Function.identity(), "https://www.pornhub.com/video");
+            DOWNLOAD_VIDEO = parse(properties, PropertiesParam.DOWNLOAD_VIDEO, i -> i.equalsIgnoreCase("Y"), false);
+
+
 
             if(!START_URL.startsWith("https://www.pornhub.com/video")) {
                 throw new IllegalArgumentException("START_URL need start with https://www.pornhub.com/video");

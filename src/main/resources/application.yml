@@ -7,12 +7,12 @@ spring:
     username: sa
     password:
   jpa:
-    show-sql: true
+#    show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       format_sql: true
-      properties.hibernate.generate_statistics: true
+#      properties.hibernate.generate_statistics: true
   h2:
     console:
       enabled: true

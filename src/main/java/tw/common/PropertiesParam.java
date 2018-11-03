@@ -8,6 +8,7 @@ public enum PropertiesParam {
     FILE_PATH,
     MAX_PAGE_SIZE,
     CONCURRENT_THREAD_SIZE,
-    START_URL
+    START_URL,
+    DOWNLOAD_VIDEO
     ;
 }
