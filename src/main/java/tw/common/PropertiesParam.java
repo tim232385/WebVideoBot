@@ -1,4 +1,4 @@
-package tw;
+package tw.common;
 
 /**
  * Created by Tim.Liu on 2018/11/1.

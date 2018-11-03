@@ -1,11 +1,11 @@
-package tw;
+package tw.Utils;
 
 import java.util.Random;
 
 /**
  * Created by Tim.Liu on 2018/10/31.
  */
-public class RandomAgents {
+public class RandomAgentsUtils {
 
     private static String[] agentsPool;
 

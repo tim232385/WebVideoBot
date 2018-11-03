@@ -1,4 +1,4 @@
-package tw;
+package tw.service;
 
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.exceptions.PageBiggerThanMaxSizeException;
@@ -9,6 +9,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,16 +18,13 @@ import java.io.IOException;
 /**
  * Created by Tim.Liu on 2018/10/31.
  */
-public class Downloader {
+@Service
+public class DownloadService {
 
-    private static final Logger logger = LoggerFactory.getLogger(Downloader.class);
+    private static final Logger logger = LoggerFactory.getLogger(DownloadService.class);
 
-    private PageFetcher pageFetcher;
-    public Downloader(CrawlConfig config) {
-        pageFetcher = new PageFetcher(config);
-    }
-
-    public void download(String url, File file) throws InterruptedException, IOException {
+    public void download(CrawlConfig config, String url, File file) throws InterruptedException, IOException {
+        PageFetcher pageFetcher = new PageFetcher(config);
         WebURL curURL = new WebURL();
         curURL.setURL(url);
         PageFetchResult fetchResult = null;
@@ -47,4 +46,5 @@ public class Downloader {
             }
         }
     }
+
 }
