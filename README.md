@@ -16,7 +16,7 @@ The world's largest adult website
 #### Run
 ``java -jar PornBot.jar``
 
-![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/demo.gif)
+![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/demo1.gif)
 
 #### Database console
 ``http://localhost:8000/h2-console/``
