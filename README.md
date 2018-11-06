@@ -9,7 +9,8 @@
 > Disclaimer: This project is intended to study the Java Crawler4j Framework and the Spring Boot H2 database, it cannot be used for commercial or other personal intentions. If used improperly, it will be the individuals bear.
 
 * The project is mainly used for crawling a Website, the largest site in the world. In doing so it retrieves video titles, duration, mp4 link, cover url and direct Website`s url.
-* This Project support muilti-threads request, If  your network is more performant you can request more threads and crawl a larger amount.([See Configuration](#Configuration))
+* This Project support muilti-threads request, If  your network is more performant you can configuration more threads and crawl a larger amount.([See Configuration](#Configuration))
+* Easy install,  all dependencies are already included, just need to have a java environment.
 
 ### Environment, Architecture
 - Java1.8
@@ -66,3 +67,4 @@ Record Table：
  START_URL                ：Crawling url.
  DOWNLOAD_VIDEO           ：Download video. Y or N.
 ```
+[See Default Configuration](https://github.com/tim232385/PornBot/blob/master/config.properties)
