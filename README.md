@@ -1,7 +1,6 @@
-
-<div style="text-align:center">
+<p align="center"> 
 <img src ="https://raw.githubusercontent.com/tim232385/PornBot/master/image/logo.png" />
-</div>
+</p>
 
 # Porn Bot：Pornhub-downloader
   
