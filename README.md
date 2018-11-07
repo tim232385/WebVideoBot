@@ -1,4 +1,4 @@
-<center>![logo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/logo.png)</center>
+<center>![](https://raw.githubusercontent.com/tim232385/PornBot/master/image/logo.png)</center>
 # Porn Bot：Pornhub-downloader
   
 
