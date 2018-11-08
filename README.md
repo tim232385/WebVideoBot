@@ -16,6 +16,8 @@
 * This Project support muilti-threads request, If  your network is more performant you can configuration more threads and crawl a larger amount.([See Configuration](#Configuration))
 * Easy install,  all dependencies are already included, just need to have a java environment.
 
+![porn_flow](pronbot.flow.svg)
+
 ### Environment, Architecture
 - Java1.8
 
