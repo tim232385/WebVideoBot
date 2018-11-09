@@ -10,7 +10,8 @@
 <!-- 
 [中文文檔](https://github.com/tim232385/PornBot/blob/master/README_ZH.md) -->
 
-> Disclaimer: This project is intended to study the Java Crawler4j Framework and the Spring Boot H2 database, it cannot be used for commercial or other personal intentions. If used improperly, it will be the individuals bear.
+<!-- > Disclaimer: This project is intended to study the Java Crawler4j Framework and the Spring Boot H2 database, it cannot be used for commercial or other personal intentions. If used improperly, it will be the individuals bear. -->
+* Easy install,  all dependencies are already included, just need to have a java environment.
 
 ![porn_flow](pronbot.flow.svg)
 
