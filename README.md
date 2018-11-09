@@ -12,10 +12,6 @@
 
 > Disclaimer: This project is intended to study the Java Crawler4j Framework and the Spring Boot H2 database, it cannot be used for commercial or other personal intentions. If used improperly, it will be the individuals bear.
 
-* The project is mainly used for crawling a Website, the largest site in the world. In doing so it retrieves video titles, duration, mp4 link, cover url and direct Website`s url.
-* This Project support muilti-threads request, If  your network is more performant you can configuration more threads and crawl a larger amount.([See Configuration](#Configuration))
-* Easy install,  all dependencies are already included, just need to have a java environment.
-
 ![porn_flow](pronbot.flow.svg)
 
 ### Environment, Architecture
