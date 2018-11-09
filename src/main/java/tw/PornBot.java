@@ -21,21 +21,14 @@ public class PornBot implements CommandLineRunner {
     private static ArrayList<CrawlController> runnigCrawl = Lists.newArrayList();
 
     @Autowired
-    private DownloadService downloadService;
-
-    @Autowired
-    private PornCrawler PornCrawler;
-
-    @Autowired
     private ObjectFactory<PornCrawlerFactory> pornCrawlerFactory;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(PornBot.class);
     }
 
     @Override
     public void run(String... args) throws Exception {
-        logger.info("PornBot Start");
         PornCrawlControllerFactory crawlControllerFactory = new PornCrawlControllerFactory();
         for (int i = 1; i <= Properties.MAX_PAGE_SIZE;) {
 //             補至CONCURRENT_THREAD_SIZE
