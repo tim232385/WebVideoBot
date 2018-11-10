@@ -48,7 +48,7 @@ public class Properties {
             CONCURRENT_THREAD_SIZE = parse(properties, PropertiesParam.CONCURRENT_THREAD_SIZE, Integer::valueOf, 10);
             FILE_PATH = parse(properties, PropertiesParam.FILE_PATH, Function.identity(), "D:/video");
             String START_URL = parse(properties, PropertiesParam.START_URL, Function.identity(), "https://www.pornhub.com/video");
-            DOWNLOAD_VIDEO = parse(properties, PropertiesParam.DOWNLOAD_VIDEO, i -> i.equalsIgnoreCase("Y"), true);
+            DOWNLOAD_VIDEO = parse(properties, PropertiesParam.DOWNLOAD_VIDEO, i -> i.equalsIgnoreCase("Y"), false);
 
             if(!START_URL.startsWith("https://www.pornhub.com/video")) {
                 throw new IllegalArgumentException("START_URL need start with https://www.pornhub.com/video");
