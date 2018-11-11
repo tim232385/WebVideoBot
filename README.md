@@ -29,7 +29,7 @@
 
 ![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/5thread.gif)
 ![h2_console](https://raw.githubusercontent.com/tim232385/PornBot/master/image/h2_console.gif)
-### Database description
+### Database Description
 ``http://localhost:8000/h2-console/``
 
 JDBC URL: ``jdbc:h2:~/porn/porn-db``  
