@@ -8,9 +8,9 @@
 ![java-1.8](https://img.shields.io/badge/java-1.8-green.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 [![Build Status](https://travis-ci.org/tim232385/PornBot.svg?branch=master)](https://travis-ci.org/tim232385/PornBot)
-<!-- [![Code Coverage](https://codecov.io/github/tim232385/PornBot/coverage.svg)](https://codecov.io/gh/tim232385/PornBot)-->
 [![HitCount](http://hits.dwyl.io/tim232385/PornBot.svg)](http://hits.dwyl.io/tim232385/PornBot)
 
+<!-- [![Code Coverage](https://codecov.io/github/tim232385/PornBot/coverage.svg)](https://codecov.io/gh/tim232385/PornBot)-->
 <!-- 
 [中文文檔](https://github.com/tim232385/PornBot/blob/master/README_ZH.md) -->
 
