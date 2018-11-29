@@ -2,7 +2,7 @@
 <img src ="https://raw.githubusercontent.com/tim232385/PornBot/master/image/logo.png" />
 </p>
 
-# Porn Bot：Pornhub-downloader
+# Web Vedeo Bot
   
 
 ![java-1.8](https://img.shields.io/badge/java-1.8-green.svg)
