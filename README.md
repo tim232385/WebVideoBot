@@ -28,9 +28,9 @@
 
 #### Run
 
-`` git clone https://github.com/tim232385/WebVideoBot.git
-cd WebVideoBot
-java -jar PornBot.jar``
+`` git clone https://github.com/tim232385/WebVideoBot.git ``
+`` cd WebVideoBot ``
+``java -jar PornBot.jar``
 
 ![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/5thread.gif)
 ![h2_console](https://raw.githubusercontent.com/tim232385/PornBot/master/image/h2_console.gif)
