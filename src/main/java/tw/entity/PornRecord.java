@@ -47,7 +47,6 @@ public class PornRecord {
      * @param filePathPrefix
      */
     public PornRecord(HashMap<String, Object> videoMap, String viewKey, String filePathPrefix, boolean download) {
-        HashMap mediaDefinitions = ((List<HashMap>) videoMap.get("mediaDefinitions")).get(0);
         this.viewKey = trimToNull(viewKey);
         this.imageUrl = trimToNull(videoMap.get("image_url"));
         this.linkUrl = trimToNull(videoMap.get("link_url"));
@@ -55,8 +54,8 @@ public class PornRecord {
         this.videoDuration = Integer.valueOf(videoMap.get("video_duration").toString());
         this.filePath = filePathPrefix + "/" + viewKey + ".mp4";
         this.download = download;
-        this.videoUrl = trimToNull(mediaDefinitions.get("videoUrl").toString());
-        this.videoQuality = Integer.valueOf(mediaDefinitions.get("quality").toString());
+        this.videoUrl = "https://www.pornhub.com/embed/" + viewKey;
+        this.videoQuality = (Integer)((List)videoMap.get("defaultQuality")).get(0);
     }
 
     public LocalDateTime getCreatedTime() {
