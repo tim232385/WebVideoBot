@@ -26,8 +26,11 @@
 
 - Spring Boot x H2 Db
 
-#### Run
-``java -jar PornBot.jar``
+#### How to use
+`` git clone https://github.com/tim232385/WebVideoBot.git ``  
+`` cd WebVideoBot ``  
+`` java -jar PornBot.jar``  
+`` **DOWNLOAD_VIDEO default is N**`` [See Default Configuration](https://github.com/tim232385/PornBot/blob/master/config.properties)
 
 ![Demo](https://raw.githubusercontent.com/tim232385/PornBot/master/image/5thread.gif)
 ![h2_console](https://raw.githubusercontent.com/tim232385/PornBot/master/image/h2_console.gif)
