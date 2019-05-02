@@ -7,8 +7,8 @@
 
 ![java-1.8](https://img.shields.io/badge/java-1.8-green.svg)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tim232385/PornBot/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/tim232385/PornBot.svg?branch=master)](https://travis-ci.org/tim232385/WebVideoBot)
-[![HitCount](http://hits.dwyl.io/tim232385/PornBot.svg)](http://hits.dwyl.io/tim232385/PornBot)
+<!--[![Build Status](https://travis-ci.org/tim232385/PornBot.svg?branch=master)](https://travis-ci.org/tim232385/WebVideoBot)
+[![HitCount](http://hits.dwyl.io/tim232385/PornBot.svg)](http://hits.dwyl.io/tim232385/PornBot)-->
 
 <!-- [![Code Coverage](https://codecov.io/github/tim232385/PornBot/coverage.svg)](https://codecov.io/gh/tim232385/PornBot)-->
 <!-- 
