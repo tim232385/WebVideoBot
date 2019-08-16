@@ -77,4 +77,9 @@ Record Table：
  START_URL                ：Crawling url.
  DOWNLOAD_VIDEO           ：Download video. Y or N.
 ```
-[See Default Configuration](https://github.com/tim232385/PornBot/blob/master/config.properties)
+[See Default Configuration](https://github.com/tim232385/PornBot/blob/master/config.properties
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starcharts.herokuapp.com/tim232385/WebVideoBot.svg)](https://starcharts.herokuapp.com/tim232385/WebVideoBot)
